@@ -418,12 +418,6 @@ msgstr ""
 msgid "manager.setup"
 msgstr "Ρυθμίσεις περιοδικού"
 
-msgid "manager.setup.masthead"
-msgstr "Κύριος τίτλος"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Συντακτική ομάδα"
-
 msgid "manager.setup.homepageContent"
 msgstr "Περιεχόμενο αρχικής σελίδας περιοδικού"
 
@@ -489,11 +483,6 @@ msgstr ""
 
 msgid "manager.setup.appearInAboutJournal"
 msgstr "(Προς εμφάνιση στη σελίδα «Σχετικά με το περιοδικό»)"
-
-msgid "manager.setup.competingInterests.requireAuthors"
-msgstr ""
-"Απαιτείται από τους Συγγραφείς να καταθέτουν Δήλωση Αντικρουόμενων "
-"Συμφερόντων μαζί με την υποβολή."
 
 msgid "manager.setup.competingInterests.requireReviewers"
 msgstr ""
@@ -807,14 +796,6 @@ msgstr ""
 msgid "manager.setup.contextTitle"
 msgstr "Τίτλος Περιοδικού"
 
-msgid "manager.setup.keyInfo"
-msgstr ""
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Δώστε μια σύντομη περιγραφή του περιοδικού σας και προσδιορίστε τους "
-"συντάκτες, τους διευθυντές και άλλα μέλη της συντακτικής σας ομάδας."
-
 msgid "manager.setup.labelName"
 msgstr "Όνομα πεδίου"
 
@@ -853,12 +834,6 @@ msgstr ""
 "βιβλιοθήκες που συμμετέχουν στο δίκτυο, μέσω της σελίδας <a  href="
 "\"{$lockssUrl}\" target=\"_blank\">Διακήρυξη του Εκδότη</a> του LOCKSS."
 
-msgid "manager.setup.lockssLicenseDescription"
-msgstr ""
-"Η άδεια του LOCKSS θα εμφανίζεται στο μενού \"Σχετικά με το περιοδικό\", "
-"στην ενότητα \"Αρχειοθέτηση\": <a href=\"http://www.lockss.org/community/"
-"publishers-titles-gln/\" target=\"_blank\">Άδεια LOCKSS</a>"
-
 msgid "manager.setup.lockssLicenseLabel"
 msgstr "Περιγραφή άδειας LOCKSS"
 
@@ -876,12 +851,6 @@ msgstr ""
 "Ενεργοποίηση του CLOCKSS για τη διανομή και αποθήκευση του περιεχομένου σε "
 "βιβλιοθήκες που συμμετέχουν στο δίκτυο, μέσω της σελίδας <a href="
 "\"{$clockssUrl}\" target=\"_blank\">Διακήρυξη του Εκδότη</a> του CLOCKSS."
-
-msgid "manager.setup.clockssLicenseDescription"
-msgstr ""
-"Η άδεια του CLOCKSS θα εμφανίζεται στο μενού \"Σχετικά με το περιοδικό\", "
-"στην ενότητα \"Αρχειοθέτηση\": <a href=\"http://clockss.org/\" target="
-"\"_blank\">;Άδεια CLOCKSS</a>"
 
 msgid "manager.setup.clockssLicenseLabel"
 msgstr "Περιγραφή άδειας CLOCKSS"
@@ -2059,11 +2028,6 @@ msgstr ""
 msgid "plugins.importexport.common.settings.form.password"
 msgstr "Κωδικός πρόσβασης"
 
-msgid "plugins.importexport.common.settings.form.password.description"
-msgstr ""
-"Παρακαλούμε σημειώστε ότι ο κωδικός θα αποθηκευτεί ως απλό κείμενο και δεν "
-"θα είναι κρυπτογραφημένος."
-
 msgid "plugins.importexport.common.filter.issue"
 msgstr "Όλα τα τεύχη"
 
@@ -2090,9 +2054,6 @@ msgstr "Σήμανση ως ευρετηριασμένο"
 
 msgid "plugins.importexport.common.action.register"
 msgstr "Ευρετηρίαση"
-
-msgid "plugins.importexport.common.validation"
-msgstr "Επικυρώστε το XML πριν από την εξαγωγή και την ευρετηρίαση."
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Δεν έχουν επιλεγεί αντικείμενα."
@@ -2626,11 +2587,6 @@ msgstr ""
 
 #~ msgid "manager.payments"
 #~ msgstr "Πληρωμές"
-
-#~ msgid "manager.setup.editorialTeam.description"
-#~ msgstr ""
-#~ "Κατάλογος Επιμελητών, Διαχειριστικών Διευθυντών, και άλλων ατόμων που "
-#~ "σχετίζονται με το περιοδικό."
 
 #~ msgid "manager.setup.layout"
 #~ msgstr "Διάταξη περιοδικού"

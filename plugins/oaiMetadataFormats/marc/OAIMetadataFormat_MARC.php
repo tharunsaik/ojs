@@ -3,8 +3,8 @@
 /**
  * @file plugins/oaiMetadataFormats/marc/OAIMetadataFormat_MARC.php
  *
- * Copyright (c) 2014-2021 Simon Fraser University
- * Copyright (c) 2003-2021 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_MARC
@@ -18,6 +18,9 @@
 
 namespace APP\plugins\oaiMetadataFormats\marc;
 
+use APP\journal\Journal;
+use APP\publication\Publication;
+use APP\submission\Submission;
 use APP\template\TemplateManager;
 use PKP\core\PKPString;
 use PKP\i18n\LocaleConversion;
@@ -33,26 +36,36 @@ class OAIMetadataFormat_MARC extends OAIMetadataFormat
      */
     public function toXml($record, $format = null)
     {
+        /** @var Submission $article */
         $article = $record->getData('article');
+
+        /** @var Publication $publication */
+        $publication = $article->getCurrentPublication();
+
+        $publicationLocale = $publication->getData('locale');
+
+        /** @var Journal $journal */
         $journal = $record->getData('journal');
 
         $templateMgr = TemplateManager::getManager();
         $templateMgr->assign([
             'journal' => $journal,
             'article' => $article,
+            'publication' => $publication,
             'issue' => $record->getData('issue'),
-            'section' => $record->getData('section')
+            'section' => $record->getData('section'),
+            'publicationLocale' => $publicationLocale,
         ]);
 
         $subjects = array_merge_recursive(
-            stripAssocArray((array) $article->getDiscipline(null)),
-            stripAssocArray((array) $article->getSubject(null))
+            stripAssocArray((array) $publication->getData('discipline')),
+            stripAssocArray((array) $publication->getData('subjects'))
         );
 
         $templateMgr->assign([
-            'subject' => isset($subjects[$journal->getPrimaryLocale()]) ? $subjects[$journal->getPrimaryLocale()] : '',
-            'abstract' => PKPString::html2text($article->getAbstract($article->getLocale())),
-            'language' => LocaleConversion::get3LetterIsoFromLocale($article->getLocale())
+            'subject' => $subjects[$publicationLocale] ?? $subjects[$journal->getPrimaryLocale()] ?? '',
+            'abstract' => PKPString::html2text($publication->getData('abstract', $publicationLocale)),
+            'language' => LocaleConversion::get3LetterIsoFromLocale($publicationLocale)
         ]);
 
         $plugin = PluginRegistry::getPlugin('oaiMetadataFormats', 'OAIFormatPlugin_MARC');

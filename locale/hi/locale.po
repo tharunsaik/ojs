@@ -1807,12 +1807,6 @@ msgstr "जर्नल के बारे में"
 msgid "about.history"
 msgstr "जर्नल इतिहास"
 
-msgid "about.editorialTeam"
-msgstr "संपादकीय टीम"
-
-msgid "about.editorialTeam.biography"
-msgstr "जीवनी"
-
 msgid "about.editorialPolicies"
 msgstr "संपादकीय नीतियां"
 
@@ -2096,7 +2090,7 @@ msgstr ""
 "\n"
 "<p>Thank you for downloading the Public Knowledge Project's <strong>Open "
 "Journal Systems</strong>. Before proceeding, please read the <a href="
-"\"{$baseUrl}/docs/README.md\">README</a> file included with this software. "
+"\"{$baseUrl}/README.md\">README</a> file included with this software. "
 "For more information about the Public Knowledge Project and its software "
 "projects, please visit the <a href=\"http://pkp.sfu.ca/\" target=\"_blank"
 "\">PKP web site</a>. If you have bug reports or technical support inquiries "
@@ -2169,6 +2163,7 @@ msgstr ""
 "<p>2. A directory to store uploaded files must be created and made writable "
 "(see \"File Settings\" below).</p>"
 
+#, fuzzy
 msgid "installer.upgradeInstructions"
 msgstr ""
 "<h4> OJS संस्करण {$ संस्करण} </ h4>\n"
@@ -2553,9 +2548,6 @@ msgstr "<p> इस गैली का अनुमोदन हटाएँ। 
 
 msgid "search.cli.rebuildIndex.indexing"
 msgstr "अनुक्रमण \"{$ journalName}\""
-
-msgid "search.cli.rebuildIndex.indexingByJournalNotSupported"
-msgstr "यह खोज कार्यान्वयन प्रति-पत्रिका पुन: अनुक्रमण की अनुमति नहीं देता है।"
 
 msgid "search.cli.rebuildIndex.unknownJournal"
 msgstr ""

@@ -1,10 +1,10 @@
-# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2021, 2022, 2023.
+# Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>, 2021, 2022, 2023, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19T10:49:18+00:00\n"
-"PO-Revision-Date: 2023-04-24 00:11+0000\n"
+"PO-Revision-Date: 2025-03-01 11:23+0000\n"
 "Last-Translator: Jiří Dlouhý <jiri.dlouhy@czp.cuni.cz>\n"
 "Language-Team: Czech <http://translate.pkp.sfu.ca/projects/ojs/manager/cs/>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.13.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "manager.distribution.access"
 msgstr "Přístup"
@@ -402,12 +402,6 @@ msgstr "Omezit počet slov abstraktu pro tuto sekci na (0 pro žádný limit)"
 msgid "manager.setup"
 msgstr "Nastavení"
 
-msgid "manager.setup.masthead"
-msgstr "Hlavička"
-
-msgid "manager.setup.editorialTeam"
-msgstr "Tým redaktorů"
-
 msgid "manager.setup.homepageContent"
 msgstr "Obsah domovské stránky časopisu"
 
@@ -471,11 +465,6 @@ msgstr ""
 
 msgid "manager.setup.appearInAboutJournal"
 msgstr "(K zobrazení v části O časopisu) "
-
-msgid "manager.setup.competingInterests.requireAuthors"
-msgstr ""
-"Požadovat od autorů, aby spolu s příspěvkem zaslali soubor s prohlášením o "
-"střetu zájmů."
 
 msgid "manager.setup.competingInterests.requireReviewers"
 msgstr ""
@@ -783,14 +772,6 @@ msgstr ""
 msgid "manager.setup.contextTitle"
 msgstr "Název časopisu"
 
-msgid "manager.setup.keyInfo"
-msgstr "Klíčová informace"
-
-msgid "manager.setup.keyInfo.description"
-msgstr ""
-"Uveďte krátký popis vašeho deníku a identifikujte editory, manažery a další "
-"členy vašeho redakčního týmu."
-
 msgid "manager.setup.labelName"
 msgstr "Název popisku"
 
@@ -829,12 +810,6 @@ msgstr ""
 "zúčastněných knihovnách přes LOCKSS stránku <a href=\"{$lockssUrl}\" target="
 "\"_blank\">Seznam vydavatelů</a>."
 
-msgid "manager.setup.lockssLicenseDescription"
-msgstr ""
-"Licence LOCKSS se objeví v O časopise pod Archivace: <a href=\"http://www."
-"lockss.org/community/publishers-titles-gln/\" target=\"_blank\">Licence "
-"LOCKSS</a>"
-
 msgid "manager.setup.lockssLicenseLabel"
 msgstr "Popis licence LOCKSS"
 
@@ -854,11 +829,6 @@ msgstr ""
 "Povolte službě CLOCKSS ukládat a distribuovat obsah časopisu v zúčastněných "
 "knihovnách prostřednictvím stránky <a href=\"{$clockssUrl}\" target=\"_blank"
 "\">stránky Manifest vydavatele </a>."
-
-msgid "manager.setup.clockssLicenseDescription"
-msgstr ""
-"Licence CLOCKSS se objeví v sekci O časopise v sekci Archivování: <a href="
-"\"https://clockss.org\" target=\"_blank\"> Licence CLOCKSS </a>"
 
 msgid "manager.setup.clockssLicenseLabel"
 msgstr "Popis licence CLOCKSS"
@@ -1981,10 +1951,6 @@ msgstr ""
 msgid "plugins.importexport.common.settings.form.password"
 msgstr "Heslo"
 
-msgid "plugins.importexport.common.settings.form.password.description"
-msgstr ""
-"Upozornění: heslo bude uloženo jako prostý text, nebude tedy zašifrováno."
-
 msgid "plugins.importexport.common.filter.issue"
 msgstr "Libovolné číslo"
 
@@ -2011,9 +1977,6 @@ msgstr "Označit registrované"
 
 msgid "plugins.importexport.common.action.register"
 msgstr "Registrace"
-
-msgid "plugins.importexport.common.validation"
-msgstr "Validujte XML před exportem a registrací."
 
 msgid "plugins.importexport.common.error.noObjectsSelected"
 msgstr "Nebyly vybrány žádné objekty."
@@ -2638,11 +2601,6 @@ msgstr ""
 #~ msgid "manager.setup.porticoTitle"
 #~ msgstr "Portico"
 
-#~ msgid "manager.setup.editorialTeam.description"
-#~ msgstr ""
-#~ "Seznam redaktorů, vedoucích správců a ostatních osobností spojených s "
-#~ "tímto časopisem."
-
 #~ msgid "manager.setup.userAccess.success"
 #~ msgstr ""
 #~ "Podrobnosti o přístupu uživatelů k tomuto deníku byly aktualizovány."
@@ -2738,3 +2696,10 @@ msgid "plugins.importexport.common.error.issueGalleyFileMissing"
 msgstr ""
 "Sazebnice vydání {$id} nemohla být exportována, její soubor nebyl nalezen na "
 "cestě \"{$path}\"."
+
+msgid "manager.setup.contextSummary.description"
+msgstr ""
+"Nabídněte stručný popis svého časopisu, abyste přiblížili jeho obsah a účel."
+
+msgid "emailTemplate.variable.issue.issueTableOfContents"
+msgstr "Obsah vydání, například seznam všech souvisejících příspěvků."

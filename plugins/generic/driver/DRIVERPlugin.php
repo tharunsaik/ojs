@@ -181,7 +181,7 @@ class DRIVERPlugin extends GenericPlugin
             }
 
             // is there a full text
-            $galleys = $submission->getGalleys();
+            $galleys = $publication->getData('galleys');
             if (!empty($galleys)) {
                 return $status == DRIVER_ACCESS_OPEN;
             }
@@ -233,14 +233,10 @@ class DRIVERPlugin extends GenericPlugin
         }
 
         // is there a full text
-        $galleys = $submission->getGalleys();
+        $galleys = $publication->getData('galleys');
         if (!empty($galleys)) {
             return $status == DRIVER_ACCESS_OPEN;
         }
         return false;
     }
-}
-
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\plugins\generic\driver\DRIVERPlugin', '\DRIVERPlugin');
 }

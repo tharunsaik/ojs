@@ -753,9 +753,6 @@ msgstr "Əlaqə"
 msgid "about.history"
 msgstr "Jurnal tarixi"
 
-msgid "about.editorialTeam"
-msgstr "Redaksiya heyəti"
-
 msgid "about.focusAndScope"
 msgstr "Fokus və əhatə dairəsi"
 
@@ -1699,9 +1696,6 @@ msgstr ""
 msgid "search.browseAuthorIndex"
 msgstr "Müəllif indeksi"
 
-msgid "about.editorialTeam.biography"
-msgstr "Tərcümeyi-hal"
-
 msgid "submission.copyedit.mustUploadFileForCopyedit"
 msgstr "Fayl səhifə tərtibatı üçün yüklənməmiş tələb emaili göndərilə bilməz"
 
@@ -2374,9 +2368,6 @@ msgstr "Gözlənilən təsdiq."
 
 msgid "article.view.interstitial"
 msgstr "Zəhmət olmasa endirmək üçün bir məqalə faylı seçin."
-
-msgid "search.cli.rebuildIndex.indexingByJournalNotSupported"
-msgstr "Bu axtarış tətbiqi, jurnal başına təkrar indekslənməsinə icazə verməz."
 
 msgid "search.cli.rebuildIndex.unknownJournal"
 msgstr "Verilen gündəlik yolu \"{$journalPath}\" bu Jurnal üçün həll edilmədi."

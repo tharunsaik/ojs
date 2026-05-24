@@ -6,16 +6,17 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * Embedded viewing of a HTML galley.
+ *
+ * @hook Templates::Common::Footer::PageFooter []
  *}
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
-{capture assign="pageTitleTranslated"}{translate key="article.pageTitle" title=$article->getLocalizedTitle(null, 'html')|strip_unsafe_html}{/capture}
+{capture assign="pageTitleTranslated"}{translate key="article.pageTitle" title=$article->getCurrentPublication()->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}{/capture}
 {include file="frontend/components/headerHead.tpl"}
 <body class="pkp_page_{$requestedPage|escape} pkp_op_{$requestedOp|escape}">
 
 	{* Header wrapper *}
 	<header class="header_view">
-
 		{capture assign="articleUrl"}{url page="article" op="view" path=$article->getBestId()}{/capture}
 
 		<a href="{$articleUrl}" class="return">
@@ -25,7 +26,7 @@
 		</a>
 
 		<a href="{$articleUrl}" class="title">
-			{$article->getLocalizedTitle(null, 'html')|strip_unsafe_html}
+			{$article->getCurrentPublication()->getLocalizedTitle(null, 'html')|strip_unsafe_html}
 		</a>
 	</header>
 

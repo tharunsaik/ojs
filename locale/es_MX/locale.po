@@ -1520,12 +1520,6 @@ msgstr ""
 msgid "about.history"
 msgstr ""
 
-msgid "about.editorialTeam"
-msgstr ""
-
-msgid "about.editorialTeam.biography"
-msgstr ""
-
 msgid "about.editorialPolicies"
 msgstr ""
 
@@ -2042,9 +2036,6 @@ msgid "grid.catalogEntry.approvedRepresentation.removeMessage"
 msgstr ""
 
 msgid "search.cli.rebuildIndex.indexing"
-msgstr ""
-
-msgid "search.cli.rebuildIndex.indexingByJournalNotSupported"
 msgstr ""
 
 msgid "search.cli.rebuildIndex.unknownJournal"

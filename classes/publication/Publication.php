@@ -20,18 +20,36 @@ namespace APP\publication;
 
 use APP\core\Application;
 use APP\file\PublicFileManager;
+use APP\publication\enums\VersionStage;
 use PKP\publication\PKPPublication;
 
 class Publication extends PKPPublication
 {
+    // Case of no issue, published issue and future issue with publish intent
+    public const STATUS_READY_TO_PUBLISH = 6;
+    // Case of future issue with schedule intent
+    public const STATUS_READY_TO_SCHEDULE = 7;
+
+    public const DEFAULT_VERSION_STAGE = VersionStage::VERSION_OF_RECORD;
+
+    /**
+     * Get the valid pre-publish statuses if available
+     */
+    public static function getPrePublishStatuses(): array
+    {
+        return [
+            static::STATUS_READY_TO_PUBLISH,
+            static::STATUS_READY_TO_SCHEDULE,
+        ];
+    }
+
     /**
      * Get the URL to a localized cover image
      *
-     * @param int $contextId
      *
      * @return string
      */
-    public function getLocalizedCoverImageUrl($contextId)
+    public function getLocalizedCoverImageUrl(int $contextId)
     {
         $coverImage = $this->getLocalizedData('coverImage');
 
@@ -47,8 +65,20 @@ class Publication extends PKPPublication
             $coverImage['uploadName'],
         ]);
     }
-}
 
-if (!PKP_STRICT_MODE) {
-    class_alias('\APP\publication\Publication', '\Publication');
+    /**
+     * Retrieves the issue ID associated with the publication.
+     */
+    public function getIssueId(): ?int
+    {
+        return $this->getData('issueId');
+    }
+
+    /**
+     * Sets the issue ID associated with the publication.
+     */
+    public function setIssueId(?int $issueId): void
+    {
+        $this->setData('issueId', $issueId);
+    }
 }

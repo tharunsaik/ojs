@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file classes/submission/Repository.php
  *
@@ -14,14 +15,10 @@
 namespace APP\submission;
 
 use APP\article\ArticleTombstoneManager;
-use APP\core\Services;
 use APP\facades\Repo;
-use APP\journal\JournalDAO;
 use APP\section\Section;
 use PKP\context\Context;
-use PKP\core\PKPString;
 use PKP\db\DAORegistry;
-use PKP\doi\exceptions\DoiException;
 use PKP\tombstone\DataObjectTombstoneDAO;
 
 class Repository extends \PKP\submission\Repository
@@ -75,36 +72,38 @@ class Repository extends \PKP\submission\Repository
             $errors['abstract'] = [$locale => [__('validator.required')]];
         }
 
-        // Abstract word limit
+        // Abstract/Plain Language Summary word limit
         if ($section->getAbstractWordCount()) {
-            $abstracts = $publication->getData('abstract');
-            if ($abstracts) {
-                $abstractErrors = [];
-                foreach ($context->getSupportedSubmissionLocales() as $localeKey) {
-                    $abstract = $publication->getData('abstract', $localeKey);
-                    $wordCount = $abstract ? PKPString::getWordCount($abstract) : 0;
-                    if ($wordCount > $section->getAbstractWordCount()) {
-                        $abstractErrors[$localeKey] = [
-                            __(
-                                'publication.wordCountLong',
-                                [
-                                    'limit' => $section->getAbstractWordCount(),
-                                    'count' => $wordCount
-                                ]
-                            )
-                        ];
-                    }
-                }
-                if (count($abstractErrors)) {
-                    $errors['abstract'] = $abstractErrors;
-                }
+
+            // validate abstract error count and add to errors
+            $abstractErrors = $this->validateWordCount(
+                $context,
+                $submission,
+                $section->getAbstractWordCount(),
+                'publication.abstract.wordCountLong',
+                $publication->getData('abstract') ?? []
+            );
+            if (count($abstractErrors)) {
+                $errors['abstract'] = $abstractErrors;
+            }
+
+            // validate plain language summary error count and add to errors
+            $plainLanguageSummaryErrors = $this->validateWordCount(
+                $context,
+                $submission,
+                $section->getAbstractWordCount(),
+                'publication.plainLanguageSummary.wordCountLong',
+                $publication->getData('plainLanguageSummary') ?? []
+            );
+            if (count($plainLanguageSummaryErrors)) {
+                $errors['plainLanguageSummary'] = $plainLanguageSummaryErrors;
             }
         }
 
         return $errors;
     }
 
-    public function updateStatus(Submission $submission, ?int $newStatus = null, ?Section $section = null)
+    public function updateStatus(Submission $submission, ?int $newStatus = null, ?Section $section = null): void
     {
         $oldStatus = $submission->getData('status');
         parent::updateStatus($submission, $newStatus, $section);
@@ -119,7 +118,7 @@ class Repository extends \PKP\submission\Repository
             if ($requestContext && $requestContext->getId() === $submission->getData('contextId')) {
                 $context = $requestContext;
             } else {
-                $context = Services::get('context')->get($submission->getData('contextId'));
+                $context = app()->get('context')->get($submission->getData('contextId'));
             }
             $articleTombstoneManager = new ArticleTombstoneManager();
             if (!$section) {
@@ -134,47 +133,9 @@ class Repository extends \PKP\submission\Repository
      * 1) the suffix pattern can currently be created, and
      * 2) it does not already exist.
      *
-     *
-     * @throws \Exception
      */
     public function createDois(Submission $submission): array
     {
-        /** @var JournalDAO $contextDao */
-        $contextDao = DAORegistry::getDAO('JournalDAO');
-        $context = $contextDao->getById($submission->getData('contextId'));
-
-        // Article
-        $publication = $submission->getCurrentPublication();
-
-        $doiCreationFailures = [];
-
-        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_PUBLICATION) && empty($publication->getData('doiId'))) {
-            try {
-                $doiId = Repo::doi()->mintPublicationDoi($publication, $submission, $context);
-                Repo::publication()->edit($publication, ['doiId' => $doiId]);
-            } catch (DoiException $exception) {
-                $doiCreationFailures[] = $exception;
-            }
-        }
-
-        // Galleys
-        if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_REPRESENTATION)) {
-            $galleys = Repo::galley()->getCollector()
-                ->filterByPublicationIds(['publicationIds' => $publication->getId()])
-                ->getMany();
-
-            foreach ($galleys as $galley) {
-                if (empty($galley->getData('doiId'))) {
-                    try {
-                        $doiId = Repo::doi()->mintGalleyDoi($galley, $publication, $submission, $context);
-                        Repo::galley()->edit($galley, ['doiId' => $doiId]);
-                    } catch (DoiException $exception) {
-                        $doiCreationFailures[] = $exception;
-                    }
-                }
-            }
-        }
-
-        return $doiCreationFailures;
+        return Repo::publication()->createDois($submission->getCurrentPublication(), $submission);
     }
 }
