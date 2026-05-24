@@ -1,0 +1,284 @@
+/**
+ * @file plugins/themes/modern/styles/index.less
+ *
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+ *
+ * @brief Modern theme stylesheet — cascading overrides on top of the Default theme.
+ *
+ * This file is compiled independently and loaded after the parent (Default)
+ * theme's stylesheet, so all declarations here take precedence via source order.
+ *
+ * Only the parent's variables.less is imported here (it is self-contained with
+ * no further imports), giving us access to @bg-base, @primary, @text, spacing
+ * variables, and breakpoints without depending on the lib/pkp submodule.
+ */
+
+@import "../../default/styles/variables.less";
+
+// ============================================================
+// Modern theme design tokens
+// ============================================================
+
+// Layout variables — defaults for sidebar mode; overridden via PHP modifyStyle
+// injection when homepageLayout = 'fullWidth'.
+@modern-sidebar-display:  block;
+@modern-content-width:    auto;
+@modern-content-float:    left;
+
+// Elevated card shadow for article/issue summaries and sidebar blocks
+@modern-card-shadow:       0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+@modern-card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+
+// Larger border radius for a modern feel (vs default's 3px)
+@modern-radius:            8px;
+
+// Consistent card internal padding
+@modern-card-padding:      1.714rem;
+
+// Section vertical gap
+@modern-section-gap:       2.857rem;
+
+// ============================================================
+// Global base: slightly larger font and more line height
+// ============================================================
+
+body {
+    line-height: 1.65;
+}
+
+a {
+    transition: color 0.15s ease;
+}
+
+// ============================================================
+// Header: subtle shadow replaces hard border
+// ============================================================
+
+.pkp_structure_head {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    border-bottom: none;
+}
+
+@media (min-width: @screen-desktop) {
+    .pkp_site_name .is_text {
+        font-size: @font-lead;
+        font-weight: @normal;
+        letter-spacing: 0.01em;
+    }
+
+    // Smoother nav underline transition
+    .pkp_navigation_primary > li > a {
+        border-bottom-width: 3px;
+        transition: border-color 0.15s ease, color 0.15s ease;
+    }
+}
+
+// ============================================================
+// Content area: more breathing room on desktop
+// ============================================================
+
+@media (min-width: @screen-desktop) {
+    .pkp_structure_content {
+        padding-top: @modern-section-gap;
+        padding-bottom: @modern-section-gap;
+    }
+}
+
+// ============================================================
+// Homepage layout: sidebar vs. full-width
+// Variables injected by PHP based on the homepageLayout option.
+// ============================================================
+
+@media (min-width: @screen-desktop) {
+    .pkp_page_index .pkp_structure_sidebar {
+        display: @modern-sidebar-display;
+    }
+
+    .pkp_page_index .pkp_structure_main {
+        width: @modern-content-width;
+        float: @modern-content-float;
+    }
+}
+
+// ============================================================
+// Article summaries: card-based design
+// ============================================================
+
+.obj_article_summary {
+    background: @bg;
+    border: 1px solid lighten(@bg-border-color, 5%);
+    border-radius: @modern-radius;
+    box-shadow: @modern-card-shadow;
+    padding: @modern-card-padding;
+    margin-bottom: @double;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: @modern-card-shadow-hover;
+        transform: translateY(-1px);
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    > .title {
+        font-size: @font-bump;
+        line-height: @line-bump;
+        margin-bottom: @half;
+
+        a {
+            color: @text;
+            transition: color 0.15s ease;
+
+            &:hover,
+            &:focus {
+                color: @primary;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .subtitle {
+        font-style: italic;
+        margin-bottom: @base;
+    }
+
+    .meta {
+        padding-top: @base;
+        border-top: 1px solid @bg-border-color;
+        margin-top: @base;
+    }
+}
+
+// ============================================================
+// Issue summaries: card treatment
+// ============================================================
+
+.obj_issue_summary {
+    background: @bg;
+    border: 1px solid lighten(@bg-border-color, 5%);
+    border-radius: @modern-radius;
+    box-shadow: @modern-card-shadow;
+    padding: @modern-card-padding;
+    margin-bottom: @double;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: @modern-card-shadow-hover;
+    }
+}
+
+// Issue archive: card-based list rows
+.page_issue_archive .issues_archive > li {
+    background: @bg;
+    border: 1px solid lighten(@bg-border-color, 5%);
+    border-radius: @modern-radius;
+    box-shadow: @modern-card-shadow;
+    margin-bottom: @double;
+    padding: @modern-card-padding;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: @modern-card-shadow-hover;
+    }
+}
+
+// ============================================================
+// Sidebar blocks: refined card styling
+// ============================================================
+
+.pkp_block {
+    background: @bg;
+    border: 1px solid lighten(@bg-border-color, 5%);
+    border-radius: @modern-radius;
+    box-shadow: @modern-card-shadow;
+    margin-bottom: @double;
+    padding: @modern-card-padding;
+
+    .title {
+        font-size: @font-sml;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: @text-light;
+        border-bottom: 1px solid @bg-border-color;
+        padding-bottom: @half;
+        margin-bottom: @base;
+    }
+}
+
+// ============================================================
+// Buttons and interactive elements: rounded with transitions
+// ============================================================
+
+.cmp_button,
+a.cmp_button {
+    border-radius: @modern-radius;
+    transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.obj_galley_link a {
+    border-radius: @modern-radius;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+// ============================================================
+// Forms: rounded inputs with focus ring
+// ============================================================
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+select,
+textarea {
+    border-radius: @modern-radius;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+    &:focus {
+        outline: none;
+        border-color: @primary;
+        box-shadow: 0 0 0 3px fade(@primary, 15%);
+    }
+}
+
+// ============================================================
+// Footer: accent top border
+// ============================================================
+
+.pkp_structure_footer_wrapper {
+    border-top: 3px solid @bg-base;
+}
+
+.pkp_footer_content {
+    padding-top: @modern-section-gap;
+    padding-bottom: @modern-section-gap;
+}
+
+// ============================================================
+// Pagination: separated from content with a border
+// ============================================================
+
+.cmp_pagination {
+    margin-top: @double;
+    padding-top: @base;
+    border-top: 1px solid @bg-border-color;
+}
+
+// ============================================================
+// Category listing: card treatment
+// ============================================================
+
+.categoryHeader_categories .categories_listing li {
+    border-radius: @modern-radius;
+    box-shadow: @modern-card-shadow;
+    transition: box-shadow 0.15s ease;
+
+    &:hover {
+        box-shadow: @modern-card-shadow-hover;
+    }
+}
